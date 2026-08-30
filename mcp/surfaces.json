@@ -1,0 +1,172 @@
+{
+ "name": "YouTube surface geometry",
+ "version": "1.0.0",
+ "measured_on": "2026-08-28",
+ "publisher": "Engaged Views (engagedviews.com)",
+ "license": "CC BY 4.0",
+ "canonical_url": "https://engagedviews.com/api/surfaces.json",
+ "documentation": "https://engagedviews.com/sources/",
+ "description": "The pixel geometry YouTube actually renders video thumbnails and titles at, on four surfaces, at three desktop viewport widths. Thumbnail boxes and title column widths were measured with getBoundingClientRect on YouTube's own rendered pages; title rules with getComputedStyle. Free to use with attribution.",
+ "method": "Headless Firefox via geckodriver 0.37.1, logged out, fresh profile, no cookies accepted, viewport height 1000, widths 1280/1600/1920, on 2026-08-28. Title column widths were established by overfilling the title element and re-reading the box, so they are the column a title must fit into rather than the width of one sample video's text.",
+ "caveats": [
+  "A dimension is only true as of measured_on. YouTube ships layout changes without notice and we do not currently re-measure on a schedule.",
+  "Only the three listed viewport widths were measured. We do not interpolate between them and do not extrapolate past them.",
+  "mobile-feed is sourced from a stylesheet, not measured in a rendered page. It is flagged per-surface.",
+  "We have never inspected the YouTube iOS or Android apps and make no claim about them. Mobile search results are not included: m.youtube.com/results ships no result data in its HTML, so we could not verify which row layout it uses."
+ ],
+ "corrections": [
+  {
+   "date": "2026-08-28",
+   "what": "We published thumbnail boxes of 310x174, 360x202 and 168x94 that were not what YouTube renders. Two came from YouTube's skeleton stylesheets (the grey placeholders drawn while the page loads); one was the size YouTube declares for the image file it serves, not the box it paints.",
+   "fixed": "Replaced with browser-measured values, per viewport."
+  },
+  {
+   "date": "2026-08-28",
+   "what": "We rendered title columns of 200px and 234px that we had composed ourselves rather than measured, so titles truncated far too early on desktop search and far too late on the watch sidebar.",
+   "fixed": "Replaced with measured column widths, per viewport."
+  }
+ ],
+ "units": "CSS pixels",
+ "surfaces": [
+  {
+   "id": "desktop-home",
+   "label": "Desktop home grid item",
+   "measurement": "measured",
+   "viewports": {
+    "1280": {
+     "thumbnail_box": {
+      "width": 347.3,
+      "height": 195.4
+     },
+     "title_column_width": 347.3
+    },
+    "1600": {
+     "thumbnail_box": {
+      "width": 420.0,
+      "height": 236.3
+     },
+     "title_column_width": 420.0
+    },
+    "1920": {
+     "thumbnail_box": {
+      "width": 420.0,
+      "height": 236.3
+     },
+     "title_column_width": 420.0
+    }
+   },
+   "title_rule": {
+    "font_size_px": 16.0,
+    "line_height": 1.375,
+    "max_lines": 2
+   },
+   "inset_px": 0,
+   "note": "A signed-out visitor sees no videos on YouTube's home feed, so there is no home grid to measure. These figures come from a channel's Videos tab, which uses the same yt-lockup-view-model component and the same A.ytLockupMetadataViewModelTitle clamp element as the watch sidebar. It is the same lockup; it is not literally the home feed, and we do not claim it is."
+  },
+  {
+   "id": "desktop-search",
+   "label": "Desktop search result",
+   "measurement": "measured",
+   "viewports": {
+    "1280": {
+     "thumbnail_box": {
+      "width": 500.0,
+      "height": 280.5
+     },
+     "title_column_width": 584.0
+    },
+    "1600": {
+     "thumbnail_box": {
+      "width": 500.0,
+      "height": 280.5
+     },
+     "title_column_width": 686.0
+    },
+    "1920": {
+     "thumbnail_box": {
+      "width": 500.0,
+      "height": 280.5
+     },
+     "title_column_width": 686.0
+    }
+   },
+   "title_rule": {
+    "font_size_px": 18.0,
+    "line_height": 1.4444,
+    "max_lines": 2
+   },
+   "inset_px": 0,
+   "note": "Invariant: this surface measures 500 x 280.5 at all three viewport widths. Stated as invariance rather than flattened into a single number, because invariance is the stronger fact."
+  },
+  {
+   "id": "desktop-sidebar",
+   "label": "Desktop watch page, up-next sidebar",
+   "measurement": "measured",
+   "viewports": {
+    "1280": {
+     "thumbnail_box": {
+      "width": 215.9,
+      "height": 121.4
+     },
+     "title_column_width": 121.5
+    },
+    "1600": {
+     "thumbnail_box": {
+      "width": 270.9,
+      "height": 152.3
+     },
+     "title_column_width": 154.5
+    },
+    "1920": {
+     "thumbnail_box": {
+      "width": 325.9,
+      "height": 183.3
+     },
+     "title_column_width": 187.5
+    }
+   },
+   "title_rule": {
+    "font_size_px": 14.0,
+    "line_height": 1.4286,
+    "max_lines": 3
+   },
+   "inset_px": 0,
+   "note": null
+  },
+  {
+   "id": "mobile-feed",
+   "label": "Mobile web home feed (m.youtube.com)",
+   "measurement": "sourced",
+   "viewports": {
+    "1280": {
+     "thumbnail_box": {
+      "width": 393.0,
+      "height": 221.06
+     },
+     "title_column_width": 393.0
+    },
+    "1600": {
+     "thumbnail_box": {
+      "width": 393.0,
+      "height": 221.06
+     },
+     "title_column_width": 393.0
+    },
+    "1920": {
+     "thumbnail_box": {
+      "width": 393.0,
+      "height": 221.06
+     },
+     "title_column_width": 393.0
+    }
+   },
+   "title_rule": {
+    "font_size_px": 14.0,
+    "line_height": 1.25,
+    "max_lines": 2
+   },
+   "inset_px": 12,
+   "note": "SOURCED, not measured: read from m.youtube.com's stylesheet rather than from a rendered page. The 393px viewport is a phone width WE chose -- the 16:9 ratio is the sourced part -- and it does not vary with the desktop viewport because it is not a desktop surface. The element mapping is inferred: the feed headline carries .media-item-headline, which has no typography of its own, and the 2-line clamp comes from the h3 rule."
+  }
+ ]
+}
