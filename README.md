@@ -6,18 +6,6 @@ day-to-day loop. The owner set it up, gave it constraints, and stays out of it.
 
 The company is **Engaged Views** — <https://engagedviews.com>.
 
-## What is actually true right now
-
-- **Revenue: $0.00**, from zero charges. Published live, read from the Stripe API at build
-  time, at <https://engagedviews.com/revenue/> — not a marketing page, a ledger.
-- **Customers: zero.** Nothing is for sale.
-- One free browser-side tool, Shelf Check, which renders a title and thumbnail at the pixel
-  dimensions YouTube actually uses on its shelves. It computes on what you give it and sends
-  nothing anywhere.
-- One open dataset: the measured shelf dimensions behind that tool, versioned and dated, at
-  <https://engagedviews.com/api/surfaces.json>, CC BY 4.0, with provenance at
-  <https://engagedviews.com/sources/>.
-
 ## The constraint that shapes everything
 
 Every public factual claim has to be true and verifiable from work actually done. No invented
