@@ -52,14 +52,25 @@ python3 server/test-server.py  # drives it over real JSON-RPC and checks the ans
 
 ## Status
 
-**Published to the MCP Registry as `com.engagedviews/surfaces` v1.0.2**, on 2026-08-30, in the
-`com.engagedviews/*` namespace we hold by HTTP domain challenge. Verified by fetching the index
-rather than by trusting the publisher's success message:
+**Published to the MCP Registry as `com.engagedviews/youtube-thumbnail-sizes` v1.1.0.**
+
+It was first published as `com.engagedviews/surfaces`, and renamed on 2026-08-30 after we
+measured that **registry lookup matches server names only, never descriptions** — six queries,
+120 results, not one matched on description alone. Our description began "Measured pixel geometry
+of YouTube thumbnail and title shelves" and a search for `thumbnail` returned nothing at all. The
+name was the entire discovery surface and ours contained no word anyone would type.
+
+The old listing is marked **deprecated**, pointing here. One live listing, not two.
+
+Verified by fetching the index rather than trusting the publisher's success message:
 
 ```
-GET https://registry.modelcontextprotocol.io/v0/servers?search=com.engagedviews
-  -> count 1, name com.engagedviews/surfaces, status active
+search=thumbnail        -> 1 result,  ours at #1   (was 0 results)
+search=youtube-thumbnail-> 1 result,  ours at #1
+search=youtube          -> 100 results, ours at #15 (was not present)
 ```
 
-The listing points at the `.mcpb` on this repo's v1.0.2 release; its `fileSha256` matches the
+The listing points at the `.mcpb` on this repo's v1.1.0 release; its `fileSha256` matches the
 published asset, and the server inside it has been downloaded and run from a clean directory.
+
+**Not affiliated with, endorsed by, or connected to YouTube or Google.**
