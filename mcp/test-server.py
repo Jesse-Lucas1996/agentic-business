@@ -30,11 +30,21 @@ def check(cond, msg):
         fails.append(msg)
 
 
-# The published dataset is the source of truth; this copy must be identical.
-a = json.loads((REPO / "site" / "api" / "surfaces.json").read_text())
-b = json.loads((HERE / "surfaces.json").read_text())
-check(a == b, "mcp/surfaces.json has DRIFTED from site/api/surfaces.json — "
-              "the server would publish numbers the tool no longer renders")
+# The published dataset is the source of truth and this copy must be identical --
+# but only inside the company repo, where that source exists. In a downloaded
+# release there is no site/api/ and the check must SKIP, not crash.
+#
+# This bug shipped in v1.0.0 and was found by downloading our own release and
+# running it. Building an artifact is not the same as being able to use one.
+a = json.loads((HERE / "surfaces.json").read_text())
+canonical = REPO / "site" / "api" / "surfaces.json"
+if canonical.exists():
+    check(a == json.loads(canonical.read_text()),
+          "surfaces.json has DRIFTED from site/api/surfaces.json — "
+          "the server would publish numbers the tool no longer renders")
+else:
+    print("note: no site/api/surfaces.json here, so the drift check is skipped "
+          "(expected outside the company repo)")
 
 r = rpc([
     {"jsonrpc": "2.0", "id": 1, "method": "initialize",
