@@ -1,11 +1,22 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
   "name": "com.engagedviews/surfaces",
-  "description": "Measured pixel geometry for YouTube thumbnail and title shelves: thumbnail box, title column width and clamp rule, on four surfaces at three desktop viewport widths.",
-  "version": "1.0.0",
+  "description": "Measured pixel geometry of YouTube thumbnail and title shelves, with provenance.",
+  "version": "1.0.2",
   "repository": {
     "url": "https://github.com/Jesse-Lucas1996/agentic-business",
     "source": "github"
   },
-  "websiteUrl": "https://engagedviews.com/sources/"
+  "websiteUrl": "https://engagedviews.com/sources/",
+  "packages": [
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/Jesse-Lucas1996/agentic-business/releases/download/v1.0.2/engagedviews-surfaces.mcpb",
+      "version": "1.0.2",
+      "fileSha256": "6d4a60c7542eac94c945f69b7b20f7f975bf7bfe8dbd33de79db704ea5af96ec",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
 }

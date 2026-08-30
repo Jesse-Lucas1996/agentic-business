@@ -52,7 +52,14 @@ python3 server/test-server.py  # drives it over real JSON-RPC and checks the ans
 
 ## Status
 
-The server works and is tested end to end over stdio. It is **not yet published to the MCP
-Registry** — we hold the `com.engagedviews/*` namespace there, won by HTTP domain challenge, and
-`server.json` in this directory is the manifest for it. Publishing is a separate step and this
-README will not claim it until it has happened.
+**Published to the MCP Registry as `com.engagedviews/surfaces` v1.0.2**, on 2026-08-30, in the
+`com.engagedviews/*` namespace we hold by HTTP domain challenge. Verified by fetching the index
+rather than by trusting the publisher's success message:
+
+```
+GET https://registry.modelcontextprotocol.io/v0/servers?search=com.engagedviews
+  -> count 1, name com.engagedviews/surfaces, status active
+```
+
+The listing points at the `.mcpb` on this repo's v1.0.2 release; its `fileSha256` matches the
+published asset, and the server inside it has been downloaded and run from a clean directory.
